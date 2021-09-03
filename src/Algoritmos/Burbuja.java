@@ -9,7 +9,7 @@ package Algoritmos;
  *
  * @author Manuel
  */
-public class Burbuja {
+public class Burbuja implements Ordenamiento {
 
     private double[] arreglo;
     private int verificaciones, intercambios;
@@ -18,6 +18,7 @@ public class Burbuja {
         this.arreglo = datos;
     }
 
+    @Override
     public void ordenarArreglo() {
         System.out.println("Vector original:");
         imprimirArreglo(arreglo);
@@ -45,9 +46,25 @@ public class Burbuja {
         System.out.println("\n");
     }
 
+    @Override
+    public void obtenerArreglo(double[] datos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double[] getResultado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void imprimirArreglo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public static void main(String args[]) {
-        double datos[] = {23, 6, 15, 53, 13,27,12,11};
-        Burbuja b = new Burbuja(datos);
+        double datos[] = {1, 5, 10, 15, 20};
+        double datos2[] = {20,15,10,5,1};
+        Burbuja b = new Burbuja(datos2);
         b.ordenarArreglo();
     }
 }
