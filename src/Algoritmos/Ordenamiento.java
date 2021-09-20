@@ -10,9 +10,17 @@ package Algoritmos;
  * @author Manuel
  */
 public interface Ordenamiento {
-    public void obtenerArreglo(double[] datos);
+
     public void ordenarArreglo();
-    public double[] getResultado();
-    public void imprimirArreglo();
     
+    void setArreglo (double[] arreglo);
+    
+    public double[] getArreglo();
+    
+    public double getTiempoFinal();
+    
+    public double getVerificaciones();
+    
+    public double getIntercambios();
+
 }

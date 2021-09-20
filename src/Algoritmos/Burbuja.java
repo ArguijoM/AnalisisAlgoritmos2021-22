@@ -13,15 +13,19 @@ public class Burbuja implements Ordenamiento {
 
     private double[] arreglo;
     private int verificaciones, intercambios;
+    private double tiempo_e;
+    private double tiempo_i, tiempo_f;
+    private double[] tiempos;
 
-    public Burbuja(double[] datos) {
-        this.arreglo = datos;
+    public Burbuja() {
+        this.tiempo_e = 0;
+        this.tiempo_i = 0;
+        this.tiempo_f = 0;
     }
 
     @Override
     public void ordenarArreglo() {
-        System.out.println("Vector original:");
-        imprimirArreglo(arreglo);
+        this.tiempo_i = System.currentTimeMillis();
         for (int i = 0; i < arreglo.length - 1; i++) {
             for (int j = 0; j < this.arreglo.length - 1; j++) {
                 if (arreglo[j] > this.arreglo[j + 1]) {
@@ -33,38 +37,33 @@ public class Burbuja implements Ordenamiento {
                 this.verificaciones++;
             }
         }
-        System.out.println("No. de Intercambios: " + this.intercambios);
-        System.out.println("No. de Verificaciónes: " + this.verificaciones);
-        System.out.println("Vector ordenado:");
-        imprimirArreglo(arreglo);
+        this.tiempo_f = System.currentTimeMillis();
+        this.tiempo_e = (this.tiempo_f - this.tiempo_i)/1000;
     }
 
-    public static void imprimirArreglo(double array[]) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + " | ");
-        }
-        System.out.println("\n");
+
+    @Override
+    public double getTiempoFinal() {
+        return tiempo_e;
     }
 
     @Override
-    public void obtenerArreglo(double[] datos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double[] getArreglo() {
+        return arreglo;
     }
 
     @Override
-    public double[] getResultado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double getVerificaciones() {
+        return this.verificaciones;
     }
 
     @Override
-    public void imprimirArreglo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double getIntercambios() {
+       return this.intercambios;
     }
 
-    public static void main(String args[]) {
-        double datos[] = {1, 5, 10, 15, 20};
-        double datos2[] = {20,15,10,5,1};
-        Burbuja b = new Burbuja(datos2);
-        b.ordenarArreglo();
+    @Override
+    public void setArreglo(double[] arreglo) {
+        this.arreglo = arreglo;
     }
 }

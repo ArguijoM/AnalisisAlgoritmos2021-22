@@ -9,16 +9,16 @@ package Algoritmos;
  *
  * @author Manuel
  */
-public class Burbuja_Optimizado implements Ordenamiento {
+public class InsertSort implements Ordenamiento {
 
     private double[] arreglo;
-    private int bandera;
-    private int intercambios, verificaciones;
+    private int verificaciones, intercambios;
     private double tiempo_e;
     private double tiempo_i, tiempo_f;
 
-    public Burbuja_Optimizado(int bandera) {
-        this.bandera = 1;
+    public InsertSort() {
+        this.verificaciones = 0;
+        this.intercambios = 0;
         this.tiempo_e = 0;
         this.tiempo_i = 0;
         this.tiempo_f = 0;
@@ -26,16 +26,19 @@ public class Burbuja_Optimizado implements Ordenamiento {
 
     @Override
     public void ordenarArreglo() {
+        double aux = 0;
         this.tiempo_i = System.currentTimeMillis();
-        final int N = arreglo.length;
-        for (int i = N - 1; i > 0; i--) {
-            for (int j = 0; j < i; j++) {
-                if (arreglo[j] > arreglo[j + 1]) {
-                    double temp = arreglo[j];
-                    this.arreglo[j] = arreglo[j + 1];
-                    this.arreglo[j + 1] = temp;
+        for (int i = 1; i < arreglo.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (arreglo[j] < arreglo[j - 1]) {
+                    aux = arreglo[j];
+                    arreglo[j] = arreglo[j - 1];
+                    arreglo[j - 1] = aux;
+                    intercambios++;
                 }
+                verificaciones++;
             }
+
         }
         this.tiempo_f = System.currentTimeMillis();
         this.tiempo_e = (this.tiempo_f - this.tiempo_i) / 1000;
@@ -48,7 +51,7 @@ public class Burbuja_Optimizado implements Ordenamiento {
 
     @Override
     public double[] getArreglo() {
-        return arreglo;
+        return this.arreglo;
     }
 
     @Override
