@@ -6,10 +6,15 @@
 package Herramientas;
 
 import Algoritmos.Burbuja;
+import MochilaDinamica.*;
 import Algoritmos.Burbuja_Optimizado;
 import Algoritmos.InsertSort;
+import Algoritmos.MergeSort;
 import Algoritmos.Ordenamiento;
+import Algoritmos.QuickSort;
 import java.util.ArrayList;
+import Recursividad.*;
+import java.util.Scanner;
 
 /**
  *
@@ -17,33 +22,28 @@ import java.util.ArrayList;
  */
 public class Main {
 
-
-
     public static void main(String arg[]) {
-        //Generamos los 3 casos de ordenamiento
-        Herramientas a = new Herramientas(10000);
-        double[] medio = a.generarCasoMedio();
-        double[] peor = a.generarPeorCaso();
-        double[] mejor = a.generarMejorCaso();
-        a.imprimirArreglo(mejor);
-        
-        //Creamos objetos con los 3 algoritmos que analizaremos
-        Burbuja  b = new Burbuja();
-        Burbuja_Optimizado  bo = new Burbuja_Optimizado(1);
-        InsertSort in = new InsertSort();
-        
-        //generamos una lista que contenga los 3 algoritmos
-        ArrayList<Ordenamiento> lista = new ArrayList<>();
-        lista.add(b);
-        lista.add(bo);
-        lista.add(in);
-        
-        //Generamos las pruebas (Numero de pruebas, arreglo)
-        Pruebas p = new Pruebas(lista);
-        p.generarPruebas(100,medio);
-        
-        
+        Items[] bags = new Items[]{
+            new Items(1, 2), new Items(2, 5),
+            new Items(4, 6), new Items(5, 10),
+            new Items(7, 13), new Items(8, 16)
+        };
 
+        int totalWeight = 24;
+        ProblemaMochila kp = new ProblemaMochila(bags, totalWeight);
+
+        kp.solve();
+        System.out.println("Tabla de matriz de decisión óptima:");
+        int[][] bestValues = kp.getBestValues();
+        for (int i = 0; i < bestValues.length; i++) {
+            for (int j = 0; j < bestValues[i].length; j++) {
+                System.out.printf("%-5d", bestValues[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println("Valor óptimo:" + kp.getBestValue());
+        System.out.println("Solución óptima [mochila seleccionada]:");
+        System.out.println(kp.getBestSolution());
     }
 
 }

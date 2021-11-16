@@ -19,7 +19,8 @@ public class Pruebas {
 
     public Pruebas(ArrayList<Ordenamiento> metodos) {
         this.metodos = metodos;
-        this.nombres = new String[]{"Burbuja", "Burbuja Optimizado", "Insersión"};
+        //this.nombres = new String[]{"Burbuja", "Burbuja Optimizado", "InsertSort","MergeSort","QuickSort"};
+        this.nombres = new String[]{"QuickSort"};
     }
 
     public void generarPruebas(int num_pruebas, double[] datos) {
@@ -35,6 +36,7 @@ public class Pruebas {
                 aux.ordenarArreglo();
                 tiemposTotales.get(a)[p] = aux.getTiempoFinal();
             }
+            System.out.println(""+p);
         }
 
         Grafica g = new Grafica("Grafica de Tiempos Finales", "Tiempos", "Pruebas de Ordenamientos");
